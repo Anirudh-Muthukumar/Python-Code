@@ -1,0 +1,85 @@
+# Efficient information reTRIEval data structure 
+# insert and search cost = O(key_length)
+
+class TrieNode:
+
+    def __init__(self):
+        self.children = [None] * 26
+        self.wordEnd = False
+    
+
+class Trie:
+
+    def __init__(self):
+        self.root = self.getNode()
+
+    def getNode(self):
+        return TrieNode()
+    
+    def charToIndex(self, ch):
+        return ord(ch)-ord('a')
+    
+    def insert(self, key):
+        marker = self.root
+        length = len(key)
+
+        for level in range(length):
+            index = self.charToIndex(key[level])
+
+            if not marker.children[index]:
+                marker.children[index] = self.getNode()
+            
+            marker = marker.children[index] 
+        
+        marker.wordEnd = True
+
+    def search(self, key):
+        marker = self.root
+        length = len(key)
+
+        for level in range(length):
+            index = self.charToIndex(key[level])
+
+            if not marker.children[index]:
+                return False 
+            
+            marker = marker.children[index]
+        
+        return marker!=None and marker.wordEnd
+    
+    def delete(self, key):
+        marker = self.root
+
+        for level in range(len(key)):
+            index = self.charToIndex(key[level])
+            if not marker.children[index]:
+                print("Key not present!!!!")
+                return
+            marker = marker.children[index] 
+
+        if marker.wordEnd:
+            marker.wordEnd = False
+        else:
+            print("Key not present!!!!")
+
+if __name__ == '__main__':
+
+    keys = [ 'there', 'the', 'is', 'as', 'man', 'go']
+    result = ["Not present", "present"]
+
+    trie = Trie()
+
+    for key in keys:
+        trie.insert(key)
+
+    print("\'there\'", result[trie.search("there")])
+    print("\'their\'", result[trie.search("their")])
+    print("\'the\'", result[trie.search("the")])
+    print("\'man\'", result[trie.search("man")])
+    print("\'go\'", result[trie.search("go")])
+    print("\'mango\'", result[trie.search("mango")])
+    trie.delete("man")
+    print("\'man\'", result[trie.search("man")])
+
+
+    
