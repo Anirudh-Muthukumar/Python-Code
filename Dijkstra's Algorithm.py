@@ -1,4 +1,5 @@
 # Dijsktra's Algorithm for shortest path from a given source to all the vertices in a graph
+# Time Complexity: O(v^2) for matrix and O(E log V) for adjacency List
 
 def minDistanceNode(dist, sptSet):
     minDist = float('inf')
