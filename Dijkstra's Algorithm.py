@@ -26,13 +26,13 @@ def dijkstra(graph, source):
     # Iterate through all nodes 
     for _ in range(n):
         
-        # find the node with least distance 
+        # find the node with least distance and is not part of Shortest path tree
         node = minDistanceNode(dist, sptSet) 
-
+      
         # Add it to the shortest path tree
         sptSet[node] = True 
 
-        # Update the distance of the node's neighbors
+        # Update the distance of the node's neighbors which are not part of SPT
         for neighbor in range(n):
             if graph[node][neighbor] > 0 and sptSet[neighbor] == False and dist[neighbor] > dist[node] + graph[node][neighbor]:
                 dist[neighbor] = dist[node] + graph[node][neighbor]
