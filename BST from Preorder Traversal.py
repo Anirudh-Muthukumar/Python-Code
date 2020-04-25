@@ -1,3 +1,13 @@
+'''
+# 1. Create empty stack and push root
+# 2. Keep popping stack until stack is not empty and preorder[i] > stack.top()
+# 3. Make it left/right child and push it into stack
+# 4. Repeat 2, 3 until stack is empty
+
+Time complexity : O(n)
+Space complexity: O(h)
+'''
+
 class Node:
     def __init__(self, val):
         self.val = val
@@ -5,30 +15,28 @@ class Node:
         self.right = None  
 
 
-def bstFromPreorder(preOrder):
+
+def bstFromPreorder(preorder):
     stack = []
-    A = preOrder[:]
-    index = 0
-    root = Node(A[index]) # create the root node
-    index += 1
+    root = Node(preorder[0])
     stack.append(root)
-    prev_val = root.val
 
+    for i in range(1, len(preorder)):
+        temp = None 
 
-    # construct left of most nodes
-    while index<len(A) and A[index]<stack[-1].val:
-        node = Node(A[index])   # create new node
-        stack[-1].left = node   # make it left node of top of stack
-        stack.append(node)      # add the node to stack
-        index+=1    # move to next node
-    
-    # construct right subtrees of subtrees nodes in stack
-    while A[index] < root.val and index<len(A):
-        while A[index]<root.val and index<len(A) and A[index]>stack[-1].val:
-            prev_node = stack.pop()
-        prev_node.right = Node(A[index])
-        index += 1
-    
+        while stack and preorder[i] > stack[-1].val:
+            temp = stack.pop()  
+        
+        # If some element was popped from stack it is right child
+        if temp:
+            temp.right = Node(preorder[i])
+            stack.append(temp.right)
+        
+        else:  # it is a left child
+            stack[-1].left = Node(preorder[i])
+            stack.append(stack[-1].left)
+
+    print(root.val)
 
 
 
