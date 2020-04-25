@@ -1,3 +1,4 @@
-import numpy
-import BeautifulSoup
-print ("Hello ani")
+import numpy, sys
+
+n = input("Enter n: ")
+print ("Hello ani") 
