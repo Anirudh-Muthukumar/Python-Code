@@ -1,0 +1,9 @@
+# Files to ignore
+*.png
+.DS_Store
+*.ipynb
+*.exe
+*.pyc
+test.py
+Test.py
+
