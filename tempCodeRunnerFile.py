@@ -1,3 +1,4 @@
-plt.figure()
-# plt.plot([i for i in range(0, 181)], cos)
-# plt.show()
+t = int(input())
+    # for _ in range(t):
+    #     n = int(input())
+    #     print(is_prime[n])
