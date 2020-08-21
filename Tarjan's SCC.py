@@ -49,13 +49,14 @@ class TarjanSCC:
                     break
             self.sccCount += 1 
 
-# edges = [[1, 0], [0, 2], [2, 1], [0, 3], [3, 4]] 
-edges = [[0, 1], [1, 2], [2, 0], [1, 3], [1, 4], [1, 6], [3, 5], [4, 5]]
+edges = [[1, 0], [0, 2], [2, 1], [0, 3], [3, 4]] 
+# edges = [[0, 1], [1, 2], [2, 0], [1, 3], [1, 4], [1, 6], [3, 5], [4, 5]]
+# edges = [[0,1],[1,0],[0,2],[2,0],[1,2],[2,1],[2,3],[3,2],[2,5],[5,2],[3,4],[4,3]]
 graph = collections.defaultdict(list) 
 for u, v in edges:
     graph[u] += v, 
 
-tarjan = TarjanSCC(graph, 7)
+tarjan = TarjanSCC(graph, 5)
 low_links = tarjan.solve()  
 links = collections.defaultdict(list) 
 for ind, low in enumerate(low_links):
